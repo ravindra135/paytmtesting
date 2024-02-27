@@ -77,7 +77,7 @@ mainDiv.addEventListener('click', function(){
 
 
 <script type="text/javascript">
-    let mainurl = 'http://localhost/timesquartz';
+    let mainurl = 'http://localhost/paytmtesting';
 
     let view_extra_index = 0;
       // Notifications
