@@ -49,6 +49,11 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
         array (
             'voku\\' => 5,
         ),
+        'p' => 
+        array (
+            'paytmpg\\' => 8,
+            'paytm\\paytmchecksum\\' => 20,
+        ),
         'Z' => 
         array (
             'ZanySoft\\Zip\\' => 13,
@@ -221,6 +226,15 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'paytmpg\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paytm/paytm-pg/src',
+        ),
+        'paytm\\paytmchecksum\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/paytmchecksum',
+            1 => __DIR__ . '/..' . '/paytm/paytmchecksum/paytmchecksum',
         ),
         'ZanySoft\\Zip\\' => 
         array (
@@ -682,6 +696,13 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
+        'J' => 
+        array (
+            'JsonMapper' => 
+            array (
+                0 => __DIR__ . '/..' . '/netresearch/jsonmapper/src',
+            ),
+        ),
         'H' => 
         array (
             'Highlight\\' => 
@@ -791,6 +812,7 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
         'App\\Http\\Controllers\\Front\\CompareController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/CompareController.php',
         'App\\Http\\Controllers\\Front\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/FrontendController.php',
         'App\\Http\\Controllers\\Front\\HomeCustomizeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/HomeCustomizeController.php',
+        'App\\Http\\Controllers\\Front\\ImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Front/ImageController.php',
         'App\\Http\\Controllers\\Payment\\AuthorizeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Payment/AuthorizeController.php',
         'App\\Http\\Controllers\\Payment\\FlutterwaveController' => __DIR__ . '/../..' . '/app/Http/Controllers/Payment/FlutterwaveController.php',
         'App\\Http\\Controllers\\Payment\\MercadopagoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Payment/MercadopagoController.php',
@@ -886,6 +908,7 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
         'App\\Models\\TrackOrder' => __DIR__ . '/../..' . '/app/Models/TrackOrder.php',
         'App\\Models\\Transaction' => __DIR__ . '/../..' . '/app/Models/Transaction.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\UserOrderStatus' => __DIR__ . '/../..' . '/app/Models/UserOrderStatus.php',
         'App\\Models\\Wishlist' => __DIR__ . '/../..' . '/app/Models/Wishlist.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -4530,6 +4553,8 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
         'JmesPath\\TreeInterpreter' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/TreeInterpreter.php',
         'JmesPath\\Utils' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Utils.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'JsonMapper' => __DIR__ . '/..' . '/netresearch/jsonmapper/src/JsonMapper.php',
+        'JsonMapper_Exception' => __DIR__ . '/..' . '/netresearch/jsonmapper/src/JsonMapper/Exception.php',
         'Laravel\\Socialite\\AbstractUser' => __DIR__ . '/..' . '/laravel/socialite/src/AbstractUser.php',
         'Laravel\\Socialite\\Contracts\\Factory' => __DIR__ . '/..' . '/laravel/socialite/src/Contracts/Factory.php',
         'Laravel\\Socialite\\Contracts\\Provider' => __DIR__ . '/..' . '/laravel/socialite/src/Contracts/Provider.php',
@@ -10328,6 +10353,66 @@ class ComposerStaticInit478aebcd98ec2bceb96ba2d29e026e63
         'net\\authorize\\util\\MapperObj' => __DIR__ . '/..' . '/authorizenet/authorizenet/lib/net/authorize/util/MapperObj.php',
         'net\\authorize\\util\\SensitiveDataConfigType' => __DIR__ . '/..' . '/authorizenet/authorizenet/lib/net/authorize/util/SensitiveDataConfigType.php',
         'net\\authorize\\util\\SensitiveTag' => __DIR__ . '/..' . '/authorizenet/authorizenet/lib/net/authorize/util/SensitiveTag.php',
+        'paytm\\paytmchecksum\\PaytmChecksum' => __DIR__ . '/..' . '/paytm/paytmchecksum/paytmchecksum/PaytmChecksum.php',
+        'paytmpg\\merchant\\models\\PaymentDetail' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/PaymentDetail.php',
+        'paytmpg\\merchant\\models\\PaymentDetail\\PaymentDetailBuilder' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/PaymentDetail/PaymentDetailBuilder.php',
+        'paytmpg\\merchant\\models\\PaymentStatusDetail' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/PaymentStatusDetail.php',
+        'paytmpg\\merchant\\models\\PaymentStatusDetail\\PaymentStatusDetailBuilder' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/PaymentStatusDetail/PaymentStatusDetailBuilder.php',
+        'paytmpg\\merchant\\models\\RefundDetail' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/RefundDetail.php',
+        'paytmpg\\merchant\\models\\RefundDetail\\RefundDetailBuilder' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/RefundDetail/RefundDetailBuilder.php',
+        'paytmpg\\merchant\\models\\RefundStatusDetail' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/RefundStatusDetail.php',
+        'paytmpg\\merchant\\models\\RefundStatusDetail\\RefundStatusDetailBuilder' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/RefundStatusDetail/RefundStatusDetailBuilder.php',
+        'paytmpg\\merchant\\models\\SDKResponse' => __DIR__ . '/..' . '/paytm/paytm-pg/src/merchant/models/SDKResponse.php',
+        'paytmpg\\pg\\constants\\Config' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/constants/Config.php',
+        'paytmpg\\pg\\constants\\ErrorConstants' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/constants/ErrorConstants.php',
+        'paytmpg\\pg\\constants\\LibraryConstants' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/constants/LibraryConstants.php',
+        'paytmpg\\pg\\constants\\MerchantProperties' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/constants/MerchantProperties.php',
+        'paytmpg\\pg\\enums\\EChannelId' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/enums/EChannelId.php',
+        'paytmpg\\pg\\enums\\EnumCurrency' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/enums/EnumCurrency.php',
+        'paytmpg\\pg\\enums\\UserSubWalletType' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/enums/UserSubWalletType.php',
+        'paytmpg\\pg\\exceptions\\SDKException' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/exceptions/SDKException.php',
+        'paytmpg\\pg\\models\\ChildTransaction' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/ChildTransaction.php',
+        'paytmpg\\pg\\models\\ExtendInfo' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/ExtendInfo.php',
+        'paytmpg\\pg\\models\\GoodsInfo' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/GoodsInfo.php',
+        'paytmpg\\pg\\models\\Money' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/Money.php',
+        'paytmpg\\pg\\models\\PaymentMode' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/PaymentMode.php',
+        'paytmpg\\pg\\models\\ShippingInfo' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/ShippingInfo.php',
+        'paytmpg\\pg\\models\\UserInfo' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/models/UserInfo.php',
+        'paytmpg\\pg\\process\\Payment' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/process/Payment.php',
+        'paytmpg\\pg\\process\\Refund' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/process/Refund.php',
+        'paytmpg\\pg\\process\\Request' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/process/Request.php',
+        'paytmpg\\pg\\request\\BaseHeader' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/BaseHeader.php',
+        'paytmpg\\pg\\request\\ExtraParameterMap' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/ExtraParameterMap.php',
+        'paytmpg\\pg\\request\\InitiateTransactionRequest' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/InitiateTransactionRequest.php',
+        'paytmpg\\pg\\request\\InitiateTransactionRequestBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/InitiateTransactionRequestBody.php',
+        'paytmpg\\pg\\request\\NativePaymentStatusRequest' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/NativePaymentStatusRequest.php',
+        'paytmpg\\pg\\request\\NativePaymentStatusRequestBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/NativePaymentStatusRequestBody.php',
+        'paytmpg\\pg\\request\\NativeRefundStatusRequest' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/NativeRefundStatusRequest.php',
+        'paytmpg\\pg\\request\\NativeRefundStatusRequestBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/NativeRefundStatusRequestBody.php',
+        'paytmpg\\pg\\request\\RefundBaseRequest' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/RefundBaseRequest.php',
+        'paytmpg\\pg\\request\\RefundInitiateRequest' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/RefundInitiateRequest.php',
+        'paytmpg\\pg\\request\\RefundInitiateRequestBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/RefundInitiateRequestBody.php',
+        'paytmpg\\pg\\request\\RequestHeader' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/RequestHeader.php',
+        'paytmpg\\pg\\request\\SecureRequestHeader' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/request/SecureRequestHeader.php',
+        'paytmpg\\pg\\response\\AsyncRefundResponse' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/AsyncRefundResponse.php',
+        'paytmpg\\pg\\response\\AsyncRefundResponseBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/AsyncRefundResponseBody.php',
+        'paytmpg\\pg\\response\\BaseResponseBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/BaseResponseBody.php',
+        'paytmpg\\pg\\response\\InitiateTransactionResponse' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/InitiateTransactionResponse.php',
+        'paytmpg\\pg\\response\\InitiateTransactionResponseBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/InitiateTransactionResponseBody.php',
+        'paytmpg\\pg\\response\\NativePaymentStatusResponse' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/NativePaymentStatusResponse.php',
+        'paytmpg\\pg\\response\\NativePaymentStatusResponseBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/NativePaymentStatusResponseBody.php',
+        'paytmpg\\pg\\response\\NativeRefundStatusResponse' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/NativeRefundStatusResponse.php',
+        'paytmpg\\pg\\response\\NativeRefundStatusResponseBody' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/NativeRefundStatusResponseBody.php',
+        'paytmpg\\pg\\response\\ResponseHeader' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/ResponseHeader.php',
+        'paytmpg\\pg\\response\\ResultInfo' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/ResultInfo.php',
+        'paytmpg\\pg\\response\\SecureResponseHeader' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/SecureResponseHeader.php',
+        'paytmpg\\pg\\response\\interfaces\\Response' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/interfaces/Response.php',
+        'paytmpg\\pg\\response\\interfaces\\SecureResponse' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/response/interfaces/SecureResponse.php',
+        'paytmpg\\pg\\utils\\CommonUtil' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/utils/CommonUtil.php',
+        'paytmpg\\pg\\utils\\EncDecUtil' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/utils/EncDecUtil.php',
+        'paytmpg\\pg\\utils\\JSONUtil' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/utils/JSONUtil.php',
+        'paytmpg\\pg\\utils\\LoggingUtil' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/utils/LoggingUtil.php',
+        'paytmpg\\pg\\utils\\UUID' => __DIR__ . '/..' . '/paytm/paytm-pg/src/pg/utils/UUID.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 

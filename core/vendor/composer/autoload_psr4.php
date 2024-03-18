@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
+    'paytmpg\\' => array($vendorDir . '/paytm/paytm-pg/src'),
+    'paytm\\paytmchecksum\\' => array($baseDir . '/paytmchecksum', $vendorDir . '/paytm/paytmchecksum/paytmchecksum'),
     'ZanySoft\\Zip\\' => array($vendorDir . '/zanysoft/laravel-zip/src'),
     'WpOrg\\Requests\\' => array($vendorDir . '/rmccue/requests/src'),
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),

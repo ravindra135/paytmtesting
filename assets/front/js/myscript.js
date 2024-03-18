@@ -20,7 +20,7 @@ $(function ($) {
         lazy();
 
 
-        function number_format (number, decimals =2, dec_point, thousands_sep) {
+        function number_format(number, decimals = 2, dec_point, thousands_sep) {
             // Strip all characters but numerical ones.
             number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
             var n = !isFinite(+number) ? 0 : +number,
@@ -44,7 +44,7 @@ $(function ($) {
             return s.join(dec);
         }
 
-        
+
 
         // announcement banner magnific popup
         if (mainbs.is_announcement == 1) {
@@ -93,16 +93,16 @@ $(function ($) {
         });
 
 
-         // brand-slider
+        // brand-slider
         var $testimonial_slider = $(".top-bar-carousel");
         $testimonial_slider.owlCarousel({
             navText: [],
             nav: false,
             dots: false,
-            autoplay:true,
+            autoplay: true,
             smartSpeed: 500,
             loop: true,
-            
+
             thumbs: false,
             margin: 15,
             responsive: {
@@ -110,16 +110,16 @@ $(function ($) {
                     items: 1,
                 },
                 575: {
-                     items: 1,
+                    items: 1,
                 },
                 790: {
                     items: 1,
                 },
                 1100: {
-                     items: 1,
+                    items: 1,
                 },
                 1200: {
-                     items: 1,
+                    items: 1,
                 },
                 1400: {
                     items: 1,
@@ -158,14 +158,14 @@ $(function ($) {
             }
         });
 
-var $featured_category = $(".featured-categories");
+        var $featured_category = $(".featured-categories");
         $featured_category.owlCarousel({
             navText: [],
             nav: true,
             dots: false,
             loop: true,
-autoplay: true,
-           autoplayTimeout: 450,
+            autoplay: true,
+            autoplayTimeout: 450,
             smartSpeed: 1200,
             thumbs: false,
             responsive: {
@@ -195,8 +195,8 @@ autoplay: true,
             navText: [],
             dots: false,
             loop: true,
-autoplay: true,
- nav: true,
+            autoplay: true,
+            nav: true,
             smartSpeed: 85,
             margin: 15,
             thumbs: false,
@@ -346,36 +346,36 @@ autoplay: true,
             smartSpeed: 1200,
             loop: true,
             margin: 15,
-autoplay: true,
+            autoplay: true,
             responsive: {
                 0: {
                     items: 1,
-                 stagePadding: 30,
+                    stagePadding: 30,
 
                 },
                 576: {
                     items: 1,
-                        stagePadding: 30,
+                    stagePadding: 30,
 
                 },
                 768: {
                     items: 2,
-                        stagePadding: 30,
+                    stagePadding: 30,
 
                 },
                 992: {
                     items: 4,
-                        stagePadding: 40,
+                    stagePadding: 40,
 
                 },
                 1200: {
                     items: 4,
-                        stagePadding: 60,
+                    stagePadding: 60,
 
                 },
                 1400: {
                     items: 5,
-                        stagePadding: 60,
+                    stagePadding: 60,
 
                 }
             },
@@ -383,7 +383,7 @@ autoplay: true,
 
 
 
-var $dashboard_product = $(".dashboard-product");
+        var $dashboard_product = $(".dashboard-product");
         $dashboard_product.owlCarousel({
             navText: [],
             nav: false,
@@ -392,7 +392,7 @@ var $dashboard_product = $(".dashboard-product");
             smartSpeed: 1200,
             loop: true,
             margin: 15,
-           autoplay: true,
+            autoplay: true,
             responsive: {
                 0: {
                     items: 1,
@@ -461,8 +461,8 @@ var $dashboard_product = $(".dashboard-product");
             navText: [],
             nav: true,
             dots: false,
-            autoplay:true,
-             autoplayTimeout: 450,
+            autoplay: true,
+            autoplayTimeout: 450,
             smartSpeed: 1200,
             loop: true,
             thumbs: false,
@@ -490,7 +490,7 @@ var $dashboard_product = $(".dashboard-product");
         });
 
 
-           // brand-slider
+        // brand-slider
         var $testimonial_slider = $(".carousel-testimonial");
         $testimonial_slider.owlCarousel({
             navText: [],
@@ -499,7 +499,7 @@ var $dashboard_product = $(".dashboard-product");
             autoplay: true,
             smartSpeed: 1200,
             loop: true,
-            
+
             thumbs: false,
             margin: 15,
             responsive: {
@@ -525,13 +525,13 @@ var $dashboard_product = $(".dashboard-product");
         });
 
 
-          var $categories_slider = $(".categories-testimonial");
+        var $categories_slider = $(".categories-testimonial");
         $categories_slider.owlCarousel({
             navText: [],
             nav: true,
             dots: false,
-            autoplay:true,
-             autoplayTimeout: 450,
+            autoplay: true,
+            autoplayTimeout: 450,
             smartSpeed: 1200,
             loop: true,
             thumbs: false,
@@ -603,7 +603,7 @@ var $dashboard_product = $(".dashboard-product");
             thumbs: false,
         });
 
-        
+
         // Recent Blog Slider Area Start
         var $popular_category_slider = $(".resent-blog-slider");
         $popular_category_slider.owlCarousel({
@@ -634,7 +634,7 @@ var $dashboard_product = $(".dashboard-product");
             },
         });
 
-      
+
 
         // Product details main slider
         $('.product-details-slider').owlCarousel({
@@ -643,7 +643,7 @@ var $dashboard_product = $(".dashboard-product");
             nav: true,
             navText: [],
             autoplayTimeout: 5000,
-            autoplayHoverPause:true,
+            autoplayHoverPause: true,
             smartSpeed: 800,
             autoplay: true,
             thumbs: true,
@@ -848,7 +848,7 @@ var $dashboard_product = $(".dashboard-product");
         })
 
         // product quintity select js Start
-    
+
 
         $(document).on('click', '.addclick', function () {
             let current_stock = parseInt($('#current_stock').val());
@@ -859,7 +859,7 @@ var $dashboard_product = $(".dashboard-product");
                 error('Product Quantity Maximum ' + current_stock);
             }
         })
-      
+
 
         $(document).on('keyup', '.cart-amount', function () {
             let current_stock = parseInt($('#current_stock').val());
@@ -1032,10 +1032,10 @@ var $dashboard_product = $(".dashboard-product");
             e.preventDefault();
             let pagination = $(this).text();
             let lastActive = parseInt($('#item_pagination .page-item.active .page-link').text());
-            if(pagination == '›'){
-              pagination = lastActive+1;  
-            }else if(pagination == '‹'){
-                pagination = lastActive -1; 
+            if (pagination == '›') {
+                pagination = lastActive + 1;
+            } else if (pagination == '‹') {
+                pagination = lastActive - 1;
             }
             $("#search_form #page").val(pagination);
             $("#search_button").click();
@@ -1141,7 +1141,7 @@ var $dashboard_product = $(".dashboard-product");
         $(document).on("change", ".attribute_option", function () {
             getData();
         });
-        
+
 
         $(document).on("keyup", ".cart-amount", function () {
             getData();
@@ -1152,8 +1152,8 @@ var $dashboard_product = $(".dashboard-product");
         $(document).on("click", ".increaseQtycart", function () {
             let item_key = $(this).attr('data-target');
             let item_id = $(this).attr('data-id');
-            let qty = parseInt($(this).parent().find('input').val()) +1;
-            cartSubmit(item_key,item_id,qty);
+            let qty = parseInt($(this).parent().find('input').val()) + 1;
+            cartSubmit(item_key, item_id, qty);
             getData();
         });
 
@@ -1164,10 +1164,10 @@ var $dashboard_product = $(".dashboard-product");
         $(document).on("click", ".decreaseQtycart", function () {
             let item_key = $(this).attr('data-target');
             let item_id = $(this).attr('data-id');
-            let qty = parseInt($(this).parent().find('input').val()) -1;
-            
-            if(qty>0){
-                cartSubmit(item_key,item_id,qty);
+            let qty = parseInt($(this).parent().find('input').val()) - 1;
+
+            if (qty > 0) {
+                cartSubmit(item_key, item_id, qty);
                 getData();
             }
         });
@@ -1182,9 +1182,9 @@ var $dashboard_product = $(".dashboard-product");
             getData(1, $(this).attr("data-target"));
         });
 
-        function cartSubmit(item_key,item_id,cartQty) {
-            console.log(item_key,cartQty);
-            getData(1, item_key,item_id, cartQty);
+        function cartSubmit(item_key, item_id, cartQty) {
+            console.log(item_key, cartQty);
+            getData(1, item_key, item_id, cartQty);
         };
 
         function getData(status = 0, check = 0, item_key = 0, qty = 0, add_type = 0) {
@@ -1201,7 +1201,7 @@ var $dashboard_product = $(".dashboard-product");
 
             let options_prices = optionPrice();
             let totalOptionPrice = parseFloat(optionPriceSum(options_prices));
-            
+
             let attribute_ids = $(".attribute_option :selected")
                 .map(function (i, el) {
                     return $(el).attr("data-type");
@@ -1228,7 +1228,7 @@ var $dashboard_product = $(".dashboard-product");
             let demoPrice = parseFloat($("#demo_price").val());
             let subPrice = parseFloat(demoPrice + totalOptionPrice);
             let mainPrice = subPrice * quantity;
-            mainPrice = number_format(mainPrice,2,decimal_separator,thousand_separator);
+            mainPrice = number_format(mainPrice, 2, decimal_separator, thousand_separator);
             if (currency_direction == 0) {
                 $('#main_price').html(mainPrice + setCurrency);
             } else {
@@ -1237,6 +1237,8 @@ var $dashboard_product = $(".dashboard-product");
 
 
             if (status == 1) {
+                mainurl = 'http://paytmtesting.local';
+                console.log(mainurl);
                 let addToCartUrl = `${mainurl}/product/add/cart?item_id=${itemId}&options_ids=${options_ids}&attribute_ids=${attribute_ids}&quantity=${quantity}&type=${type}&item_key=${item_key}&add_type=${add_type}`;
                 $.ajax({
                     type: "GET",
@@ -1269,7 +1271,7 @@ var $dashboard_product = $(".dashboard-product");
                     return $(el).attr("data-target");
                 })
                 .get();
-                
+
             return option_prices;
         }
 
@@ -1333,14 +1335,14 @@ var $dashboard_product = $(".dashboard-product");
 
 // state price set up 
 
-$(document).on('change','#state_id_select',function(){
+$(document).on('change', '#state_id_select', function () {
     var url = $('option:selected', this).attr('data-href');
     var state_id = $(this).val();
-    $.get(url,function(response){
+    $.get(url, function (response) {
         $('.set__state_price_tr').removeClass('d-none');
         $('.set__state_price').text(response.state_price);
         $('.grand_total_set').text(response.grand_total);
-        
+
         $('.state_id_setup').val(state_id);
     })
 })

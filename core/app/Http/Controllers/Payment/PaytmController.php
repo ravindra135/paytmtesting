@@ -20,6 +20,15 @@ use App\Models\TrackOrder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use paytm\paytmchecksum\PaytmChecksum;
+use paytmpg\merchant\models\PaymentDetail\PaymentDetailBuilder;
+use paytmpg\pg\constants\LibraryConstants;
+use paytmpg\pg\constants\MerchantProperties;
+use paytmpg\pg\enums\EChannelId;
+use paytmpg\pg\enums\EnumCurrency;
+use paytmpg\pg\models\Money;
+use paytmpg\pg\models\UserInfo;
+use paytmpg\pg\process\Payment;
 
 class PaytmController extends Controller
 {
@@ -29,8 +38,6 @@ class PaytmController extends Controller
         $request->validate([
             'state_id' => State::whereStatus(1)->count() > 0  ? 'required' : '',
         ]);
-
-
 
         if (Session::has('currency')) {
             $currency = Currency::findOrFail(Session::get('currency'));
@@ -101,48 +108,125 @@ class PaytmController extends Controller
         $orderData['order_status'] = 'Pending';
         $orderData['user_id'] = isset($user) ? $user->id : 0;
         $orderData['transaction_number'] = Str::random(10);
-         $last_order_id = Order::latest()->first()->id+1;
-        $orderData['orderNumber']=$last_order_id;
+        $last_order_id = Order::latest()->first()->id + 1;
+        $orderData['orderNumber'] = $last_order_id;
         $orderData['currency_sign'] = PriceHelper::setCurrencySign();
         $orderData['currency_value'] = PriceHelper::setCurrencyValue();
         $order = Order::create($orderData);
 
+        // Custom Mod - R Cube Dev
         $data_for_request = $this->handlePaytmRequest($order->transaction_number, $total_amount);
-        $paytm_txn_url = 'https://securegw-stage.paytm.in/theia/processTransaction';
-        $paramList = $data_for_request['paramList'];
-        $checkSum = $data_for_request['checkSum'];
+        $payResponse = json_decode($data_for_request, true) ?? [];
 
+        // Default Code - Commented;
+        // $paytm_txn_url = 'https://securegw-stage.paytm.in/theia/processTransaction';
+        // $paramList = $data_for_request['paramList'];
+        // $checkSum = $data_for_request['checkSum'];
 
-        return view('front.paytm', compact('paytm_txn_url', 'paramList', 'checkSum'));
+        $data = PaymentSetting::whereUniqueKeyword('paytm')->first();
+        $paydata = $data->convertJsonData();
+
+        $mid = $paydata['mercent'];
+        $paytm_host = 'https://securegw-stage.paytm.in'; // Make this dynamic in production
+        $order_amount = $total_amount;
+        $order_id = $order->transaction_number;
+        $txn_token = $payResponse['body']['txnToken'] ?? '';
+        $txn_signature = $payResponse['head']['signature'] ?? '';
+
+        return view('front.paytm', compact('mid', 'paytm_host', 'order_amount', 'order_id', 'txn_token', 'txn_signature'));
     }
 
     public function handlePaytmRequest($order_id, $amount)
     {
-        $data = PaymentSetting::whereUniqueKeyword('paytm')->first();
 
+        $data = PaymentSetting::whereUniqueKeyword('paytm')->first();
         $paydata = $data->convertJsonData();
+
+        $paytmParams = array();
+
+        $paytmParams["body"] = array(
+            "requestType" => "Payment",
+            "mid" => $paydata['mercent'],
+            "websiteName" => "WEBSTAGING",
+            "orderId" => $order_id,
+            "callbackUrl" => "https://paytmtesting.local/paytm/notify",
+            "txnAmount" => array(
+                "value" => number_format($amount, 2, '.', ''),
+                "currency" => "INR",
+            ),
+            "userInfo" => array(
+                "custId" => $order_id
+            ),
+        );
+
+        $paytm_merchant_key = $paydata['client_secret'];
+        $payCheckSum = PaytmChecksum::generateSignature(json_encode($paytmParams["body"], JSON_UNESCAPED_SLASHES), $paytm_merchant_key);
+
+        $paytmParams["head"] = array(
+            "signature"    => $payCheckSum
+        );
+
+        $post_data = json_encode($paytmParams, JSON_UNESCAPED_SLASHES);
+
+        $url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=" . $paydata['mercent'] . "&orderId=" . $order_id;
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+        $response = curl_exec($ch);
+        print_r($response);
+
+        return $response;
+        // dd($response);
+
+        // Original Code - 10 March 2024 (RCD)
+        /* $data = PaymentSetting::whereUniqueKeyword('paytm')->first();
+        $paydata = $data->convertJsonData();
+
         // Load all functions of encdec_paytm.php and config-paytm.php
-        $this->getAllEncdecFunc();
+        // $this->getAllEncdecFunc();
         // $this->getConfigPaytmSettings();
+
         $checkSum = "";
         $paramList = array();
+
         // Create an array having all required parameters for creating checksum.
         $paramList["MID"] = $paydata['mercent'];
         $paramList["ORDER_ID"] = $order_id;
         $paramList["CUST_ID"] = $order_id;
         $paramList["INDUSTRY_TYPE_ID"] = $paydata['industry'];
         $paramList["CHANNEL_ID"] = 'WEB';
-        $paramList["TXN_AMOUNT"] = $amount;
+        $paramList["TXNAMOUNT"] = number_format($amount, 2, '.','');
         $paramList["WEBSITE"] = $paydata['website'];
-        $paramList["CALLBACK_URL"] = 'http://localhost/timesquartz/paytm/notify';
+        $paramList["CALLBACK_URL"] =  'https://paytmtesting.local/paytm/notify';
 
         $paytm_merchant_key = $paydata['client_secret'];
+
         //Here checksum string will return by getChecksumFromArray() function.
-        $checkSum = getChecksumFromArray($paramList, $paytm_merchant_key);
+        // $checkSum = getChecksumFromArray($paramList, $paytm_merchant_key);
+
+        // New Checksum from PaytmCheckSum Package;
+        $payCheckSum = PaytmChecksum::generateSignature($paramList, $paytm_merchant_key);
+
+        $isVerifySignature = PaytmChecksum::verifySignature($paramList, '1nmIzrbP1mQ%ZC9c', $payCheckSum);
+
+        if ($isVerifySignature) {
+            echo "Checksum Matched";
+        } else {
+            echo "Checksum Mismatched";
+        }
+
+        // dd(array(
+        //     'checkSum' => $payCheckSum,
+        //     'paramList' => $paramList,
+        // ));
+
         return array(
-            'checkSum' => $checkSum,
-            'paramList' => $paramList
-        );
+            'checkSum' => $payCheckSum,
+            'paramList' => $paramList,
+        ); */
     }
 
     function getAllEncdecFunc()
@@ -411,7 +495,7 @@ class PaytmController extends Controller
 
     public function notify(Request $request)
     {
-
+        dd($request->all());
 
         $order_id = $request['ORDERID'];
 
